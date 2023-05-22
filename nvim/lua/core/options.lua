@@ -18,6 +18,7 @@ vim.opt.scrolloff = 10
 vim.opt.inccommand = 'split'
 vim.opt.wrap = false -- No Wrap lines
 vim.opt.backspace = { 'start', 'eol', 'indent' }
+vim.opt.shortmess:append({ I = true })
 
 -- Title
 vim.opt.title = true
