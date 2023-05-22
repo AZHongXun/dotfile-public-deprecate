@@ -6,7 +6,7 @@
 
 - At least Neovim's version $\geq$ 0.8
 - Colorscheme is inspiring by Takuya's dotfiles. You can go check his video to config your neovim.
-- Startup time: average **40ms**. Since I don't like tp use a lot of lazy loading, and may cause some problem.
+- Startup time: average **40ms**. Since I don't like to use a lot of lazy loading, and may cause some problem.
 
 ### Plugins List
 
