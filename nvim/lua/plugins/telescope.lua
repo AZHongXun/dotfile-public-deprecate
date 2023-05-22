@@ -4,9 +4,11 @@ return {
   dependencies = {
     'nvim-lua/plenary.nvim',
     'nvim-telescope/telescope-file-browser.nvim',
-    { "nvim-telescope/telescope-fzf-native.nvim", build = "make" }
+    { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+    'nvim-lua/popup.nvim',
+    'nvim-telescope/telescope-media-files.nvim',
   },
-  lazy = false,
+  event = "VeryLazy",
   config = function()
     local telescope = require("telescope")
     local actions = require('telescope.actions')
@@ -74,11 +76,19 @@ return {
             },
           },
         },
+        media_files = {
+          -- filetypes whitelist
+          -- defaults to {"png", "jpg", "mp4", "webm", "pdf"}
+          filetypes = { "png", "webp", "jpg", "jpeg" },
+          -- find command (defaults to `fd`)
+          find_cmd = "rg"
+        }
       },
     }
 
     telescope.load_extension("file_browser")
     telescope.load_extension("fzf")
+    telescope.load_extension("media_files")
 
     vim.keymap.set('n', ';f',
       function()
