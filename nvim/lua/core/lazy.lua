@@ -57,7 +57,10 @@ require("lazy").setup {
         "compiler",
         "bugreport",
         "ftplugin",
-        "netrw"
+        "netrw",
+        "netrwPlugin",
+        "netrwSettings",
+        "netrwFileHandlers",
       },
     },
   },
