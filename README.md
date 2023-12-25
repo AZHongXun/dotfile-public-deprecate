@@ -1,6 +1,6 @@
 # AZHongXun's Dotfiles
 
-### This is a simple configuration with Neovim and tmux.<br />
+### This is a simple configuration with Neovim .<br />
 
 ## _Neovim_
 
@@ -13,12 +13,10 @@
 - Comment.nvim
 - LuaSnip
 - bufferline.nvim
-- cmp-async-path
 - cmp-buffer
 - cmp-nvim-lsp
 - cmp-path
 - cmp_luasnip
-- colorbuddy.nvim
 - friendly-snippets
 - gitsigns.nvim
 - lazy.nvim
@@ -28,8 +26,9 @@
 - lualine.nvim
 - mason-lspconfig.nvim
 - mason.nvim
-- neosolarized.nvim
-- null-ls.nvim
+- solarized-osaka.nvim
+- conform.nvim
+- nvim-lint.nvim
 - nvim-autopairs
 - nvim-cmp
 - nvim-colorizer.lua
@@ -41,9 +40,3 @@
 - telescope-file-browser.nvim
 - telescope-fzf-native.nvim
 - telescope.nvim
-
-## _tmux_
-
-Just change the keybinding and colorscheme - _neosolarized_.<br />
-
-For more information, you can check the code.
