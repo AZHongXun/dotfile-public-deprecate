@@ -12,24 +12,13 @@ return {
 		local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 		-- Diagnostic symbols in the sign column (gutter)
-		local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
-		for type, icon in pairs(signs) do
+		local diagnostic_signs = require("util.icons").diagnostic_signs
+		for type, icon in pairs(diagnostic_signs) do
 			local hl = "DiagnosticSign" .. type
 			vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 		end
 
-		local on_attach = function(client, bufnr)
-			local opts = { noremap = true, silent = true, buffer = bufnr }
-			vim.keymap.set("n", "<C-j>", "<Cmd>Lspsaga diagnostic_jump_next<CR>", opts)
-			vim.keymap.set("n", "gl", "<Cmd>Lspsaga show_line_diagnostics<CR>", opts)
-			vim.keymap.set("n", "K", "<Cmd>Lspsaga hover_doc<CR>", opts)
-			vim.keymap.set("n", "gd", "<Cmd>Lspsaga lsp_finder<CR>", opts)
-			vim.keymap.set("i", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
-			vim.keymap.set("n", "gp", "<Cmd>Lspsaga peek_definition<CR>", opts)
-			vim.keymap.set("n", "gr", "<Cmd>Lspsaga rename<CR>", opts)
-			vim.keymap.set({ "n", "v" }, "<leader>ca", "<cmd>Lspsaga code_action<CR>") -- code action
-			-- vim.keymap.set({ "n", "t" }, "<C-`>", "<Cmd>Lspsaga term_toggle<CR>", opts) -- toggle terminal
-		end
+		local on_attach = require("util.lsp").on_attach
 
 		-- Lsp Settings
 		-- C/C++

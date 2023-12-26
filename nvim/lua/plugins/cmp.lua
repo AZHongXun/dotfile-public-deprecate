@@ -5,72 +5,40 @@ return {
 		{
 			"L3MON4D3/LuaSnip",
 			build = "make install_jsregexp",
+			dependencies = {
+				"rafamadriz/friendly-snippets",
+				config = function()
+					require("luasnip.loaders.from_vscode").lazy_load()
+				end,
+			},
+			opts = {
+				history = true,
+				delete_check_events = "TextChanged",
+			},
 		},
 		-- Add icon
 		{
 			"onsails/lspkind-nvim",
 			config = function()
+				local icons = require("util.icons").kinds_preset
 				require("lspkind").init({
-					mode = "symbol",
 					preset = "codicons",
-					symbol_map = {
-						Array = " ",
-						Boolean = " ",
-						Class = " ",
-						Color = " ",
-						Constant = " ",
-						Constructor = " ",
-						Copilot = " ",
-						Enum = " ",
-						EnumMember = " ",
-						Event = " ",
-						Field = " ",
-						File = " ",
-						Folder = " ",
-						Function = "󰡱 ",
-						Interface = " ",
-						Key = " ",
-						Keyword = " ",
-						Method = " ",
-						Module = " ",
-						Namespace = " ",
-						Null = "󰟢 ",
-						Number = " ",
-						Object = " ",
-						Operator = " ",
-						Package = " ",
-						Property = " ",
-						Reference = " ",
-						Snippet = " ",
-						String = " ",
-						Struct = " ",
-						Text = " ",
-						TypeParameter = " ",
-						Unit = " ",
-						Value = " ",
-						Variable = " ",
-					},
+					symbol_map = icons,
 				})
 			end,
 		},
 		"hrsh7th/cmp-nvim-lsp",
 		"hrsh7th/cmp-buffer",
 		"hrsh7th/cmp-path",
-		"rafamadriz/friendly-snippets",
 		"saadparwaiz1/cmp_luasnip",
 		"windwp/nvim-autopairs",
 	},
 	opts = function()
+		vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = true })
 		local cmp = require("cmp")
 		local lspkind = require("lspkind")
 		local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 		local defaults = require("cmp.config.default")()
-		local luasnip = require("luasnip")
-		require("luasnip.loaders.from_vscode").lazy_load()
-		local check_backspace = function()
-			local col = vim.fn.col(".") - 1
-			return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
-		end
 		return {
 			snippet = {
 				expand = function(args)
@@ -78,8 +46,8 @@ return {
 				end,
 			},
 			mapping = cmp.mapping.preset.insert({
-				["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
-				["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+				["<S-Tab>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+				["<Tab>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
 				["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
 				["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
 				["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
@@ -93,34 +61,6 @@ return {
 				["<S-CR>"] = cmp.mapping.confirm({
 					behavior = cmp.ConfirmBehavior.Replace,
 					select = true,
-				}),
-				["<Tab>"] = cmp.mapping(function(fallback)
-					if cmp.visible() then
-						cmp.select_next_item()
-					elseif luasnip.expandable() then
-						luasnip.expand()
-					elseif luasnip.expand_or_jumpable() then
-						luasnip.expand_or_jump()
-					elseif check_backspace() then
-						fallback()
-					else
-						fallback()
-					end
-				end, {
-					"i",
-					"s",
-				}),
-				["<S-Tab>"] = cmp.mapping(function(fallback)
-					if cmp.visible() then
-						cmp.select_prev_item()
-					elseif luasnip.jumpable(-1) then
-						luasnip.jump(-1)
-					else
-						fallback()
-					end
-				end, {
-					"i",
-					"s",
 				}),
 			}),
 			sources = cmp.config.sources({
@@ -142,14 +82,12 @@ return {
 					},
 				}),
 			},
-			confirm_opts = {
-				behavior = cmp.ConfirmBehavior.Replace,
-				select = false,
-			},
 			completion = {
 				completeopt = "menu,menuone,noinsert",
 			},
+			experimental = { ghost_text = { hl_group = "CmpGhostText" } },
 			sorting = defaults.sorting,
+			view = { entries = { name = "custom", selection_order = "near_cursor" } },
 			-- nvim-autopairs integration
 			cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done()),
 			vim.cmd([[highlight! default link CmpItemKind CmpItemMenuDefault]]),
