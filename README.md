@@ -26,7 +26,7 @@ NVIM_APPNAME=AZHongXun/dotfile-public/nvim nvim
 ## Plugins List
 
 ### theme
-+[craftzdog/solarized-osaka](https://github.com/craftzdog/solarized-osaka.nvim)
++ [craftzdog/solarized-osaka](https://github.com/craftzdog/solarized-osaka.nvim)
 
 ### color
 
