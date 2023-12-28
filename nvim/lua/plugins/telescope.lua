@@ -17,7 +17,7 @@ return {
 			desc = "Find Plugin File",
 		},
 		{
-			";f",
+			"<leader>ff",
 			function()
 				local builtin = require("telescope.builtin")
 				builtin.find_files({
@@ -28,7 +28,7 @@ return {
 			desc = "Lists files in your current working directory, respects .gitignore",
 		},
 		{
-			";r",
+			"<leader>sg",
 			function()
 				local builtin = require("telescope.builtin")
 				builtin.live_grep()
@@ -36,7 +36,7 @@ return {
 			desc = "Search for a string in your current working directory and get results live as you type, respects .gitignore",
 		},
 		{
-			"\\\\",
+			"<leader>fb",
 			function()
 				local builtin = require("telescope.builtin")
 				builtin.buffers()
@@ -44,7 +44,7 @@ return {
 			desc = "Lists open buffers",
 		},
 		{
-			";t",
+			"<leader>ft",
 			function()
 				local builtin = require("telescope.builtin")
 				builtin.help_tags()
@@ -52,7 +52,7 @@ return {
 			desc = "Lists available help tags and opens a new window with the relevant help info on <cr>",
 		},
 		{
-			";;",
+			"<leader>sR",
 			function()
 				local builtin = require("telescope.builtin")
 				builtin.resume()
@@ -60,7 +60,7 @@ return {
 			desc = "Resume the previous telescope picker",
 		},
 		{
-			";e",
+			"<leader>sd",
 			function()
 				local builtin = require("telescope.builtin")
 				builtin.diagnostics()
@@ -68,7 +68,7 @@ return {
 			desc = "Lists Diagnostics for all open buffers or a specific buffer",
 		},
 		{
-			";s",
+			"<leader>st",
 			function()
 				local builtin = require("telescope.builtin")
 				builtin.treesitter()
@@ -102,17 +102,16 @@ return {
 		local telescope = require("telescope")
 		local actions = require("telescope.actions")
 		local fb_actions = require("telescope").extensions.file_browser.actions
-
+		local icons = require("util.icons").ui
 		telescope.setup({
 			defaults = {
 				sorting_strategy = "ascending",
-				layout_strategy = "flex",
-				layout_config = {
-					prompt_position = "top",
-				},
+				layout_strategy = "horizontal",
+				layout_config = { prompt_position = "top" },
 				dynamic_preview_title = true,
-				prompt_prefix = "  ",
-				selection_caret = " ",
+				winblend = 0,
+				prompt_prefix = icons.Search,
+				selection_caret = icons.ChevronRight,
 				path_display = { "truncate" },
 				file_ignore_patterns = { "node_modules", "vendor/bundle", "%.jpg", "%.png", ".DS_Store" },
 				history = {
@@ -158,6 +157,8 @@ return {
 							["/"] = function()
 								vim.cmd("startinsert")
 							end,
+							["<PageUp>"] = actions.preview_scrolling_up,
+							["<PageDown>"] = actions.preview_scrolling_down,
 						},
 					},
 				},
