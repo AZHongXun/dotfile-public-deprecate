@@ -12,4 +12,11 @@ M.on_attach = function(client, bufnr)
 	vim.keymap.set({ "n", "v" }, "<leader>ca", "<cmd>Lspsaga code_action<CR>") -- code action
 end
 
+M.capabilities = function()
+	local status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+	if status_ok then
+		return cmp_nvim_lsp.default_capabilities(vim.lsp.protocol.make_client_capabilities())
+	end
+end
+
 return M
