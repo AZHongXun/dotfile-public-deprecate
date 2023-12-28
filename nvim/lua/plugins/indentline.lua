@@ -11,19 +11,13 @@ return {
 			options = { try_as_border = true },
 		},
 		config = function(_, opts)
-			require("mini.indentscope").setup(opts)
 			vim.api.nvim_create_autocmd("FileType", {
-				pattern = {
-					"help",
-					"lazy",
-					"mason",
-					"notify",
-				},
+				pattern = { "help", "lazy", "mason" },
 				callback = function()
-					---@diagnostic disable-next-line: inject-field
 					vim.b.miniindentscope_disable = true
 				end,
 			})
+			require("mini.indentscope").setup(opts)
 		end,
 	},
 }
