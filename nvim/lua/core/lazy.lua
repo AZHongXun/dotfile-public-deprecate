@@ -17,24 +17,25 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+local icons = require("util.icons").ui
 require("lazy").setup({
 	spec = {
 		import = "plugins",
-		opts = {
-			colorscheme = "solarized-osaka",
-		},
+		opts = { colorscheme = "solarized-osaka" },
 	},
 	defaults = { lazy = true },
 	ui = {
 		icons = {
-			ft = "󰈙 ",
-			keys = "󰌌 ",
+			cmd = icons.Cmdline,
+			ft = icons.File,
+			init = icons.Gear,
+			import = icons.Import,
+			runtime = icons.Runtime,
 		},
 	},
+	checker = { enable = false },
 	performance = {
-		cache = {
-			enable = true,
-		},
+		cache = { enable = true },
 		rtp = {
 			disabled_plugins = {
 				"2html_plugin",
@@ -54,12 +55,10 @@ require("lazy").setup({
 				"zipPlugin",
 				"tutor",
 				"rplugin",
-				"syntax",
 				"synmenu",
 				"optwin",
 				"compiler",
 				"bugreport",
-				"ftplugin",
 				"netrw",
 				"netrwPlugin",
 				"netrwSettings",
@@ -68,6 +67,9 @@ require("lazy").setup({
 		},
 	},
 })
+
+vim.keymap.set("n", "<leader>lz", "<cmd>:Lazy<cr>")
+vim.keymap.set("n", "<leader>lu", "<cmd>:Lazy update<cr>")
 
 -- Lazy loading keymaps and autocmd
 vim.api.nvim_create_autocmd("User", {
