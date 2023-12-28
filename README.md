@@ -13,7 +13,7 @@
 - Comment.nvim
 - LuaSnip
 - bufferline.nvim
-- colorizer.nvim
+- colorizer.lua
 - conform.nvim
 - cmp-buffer
 - cmp-nvim-lsp
