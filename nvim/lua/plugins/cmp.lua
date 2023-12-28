@@ -22,6 +22,7 @@ return {
 			config = function()
 				local icons = require("util.icons").kinds_preset
 				require("lspkind").init({
+					mode = "symbol",
 					preset = "codicons",
 					symbol_map = icons,
 				})
@@ -74,12 +75,10 @@ return {
 				format = lspkind.cmp_format({
 					maxwidth = 25,
 					ellipsis_char = "...",
-					menu = {
-						nvim_lsp = "",
-						luasnip = "",
-						buffer = "",
-						path = "",
-					},
+					before = function(_, vim_item)
+						vim_item.menu = nil
+						return vim_item
+					end,
 				}),
 			},
 			completion = {
