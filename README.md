@@ -6,7 +6,7 @@
 
 ## Description
 This is my personal neovim config. It use [folke/lazy.nvim](https://dotfyle.com/plugins/folke/lazy.nvim) to manage plugins.</br>
-I didn't use a lot of lazy load. Since lazy loading some plugins may cause buggy, the startuptime isn't "blazing fast"(**40ms** without opening files)
+I didn't use a lot of lazy load. Since lazy loading some plugins may cause unexception error, the startuptime isn't "blazing fast"(**40ms** without opening files)
 ### Install Instructions
  > Install requires Neovim 0.9+. Always review the code before installing a configuration.
 
