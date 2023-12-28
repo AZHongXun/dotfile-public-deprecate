@@ -12,13 +12,10 @@ M.kinds_preset = {
 	Array = " ",
 	Boolean = "󰨙 ",
 	Class = " ",
-	Codeium = "󰘦 ",
 	Color = " ",
 	Control = " ",
-	Collapsed = " ",
 	Constant = "󰏿 ",
 	Constructor = " ",
-	Copilot = " ",
 	Enum = " ",
 	EnumMember = " ",
 	Event = " ",
@@ -42,11 +39,22 @@ M.kinds_preset = {
 	Snippet = " ",
 	String = " ",
 	Struct = "󰆼 ",
-	TabNine = "󰏚 ",
 	Text = " ",
 	TypeParameter = " ",
 	Unit = " ",
 	Value = " ",
 	Variable = "󰀫 ",
+}
+
+M.ui = {
+	-- lazy
+	Cmdline = " ",
+	File = "󰧮 ",
+	Gear = " ",
+	Import = "󰋺 ",
+	Runtime = "󰄉 ",
+	-- telescope
+	ChevronRight = " ",
+	Search = "  ",
 }
 return M
