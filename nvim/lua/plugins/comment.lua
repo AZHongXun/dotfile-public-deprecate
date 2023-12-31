@@ -1,33 +1,22 @@
 return {
 	"numToStr/Comment.nvim",
+	dependencies = {
+		"JoosepAlviste/nvim-ts-context-commentstring",
+		lazy = true,
+		opts = { enable_autocmd = false },
+	},
 	keys = {
 		{ "<leader>/", "<cmd>lua require('Comment.api').toggle.linewise.current()<cr>", desc = "Comment" },
-    -- stylua: ignore
-    {
-      "<leader>/",
-      '<esc><cmd>lua require("Comment.api").toggle.linewise(vim.fn.visualmode())<cr>',
-      desc = "Comment",
-      mode =
-      "x"
-    },
+		{
+			"<leader>/",
+			'<esc><cmd>lua require("Comment.api").toggle.linewise(vim.fn.visualmode())<cr>',
+			desc = "Comment",
+			mode = "x",
+		},
 	},
 	opts = {
-		pre_hook = function(ctx)
-			if vim.bo.filetype == "typescriptreact" then
-				local U = require("Comment.utils")
-				local type = ctx.ctype == U.ctype.linewise and "__default" or "__multiline"
-				local location = nil
-				if ctx.ctype == U.ctype.blockwise then
-					location = require("ts_context_commentstring.utils").get_cursor_location()
-				elseif ctx.cmotion == U.cmotion.v or ctx.cmotion == U.cmotion.V then
-					location = require("ts_context_commentstring.utils").get_visual_start_location()
-				end
-
-				return require("ts_context_commentstring.internal").calculate_commentstring({
-					key = type,
-					location = location,
-				})
-			end
+		custom_commentstring = function()
+			return require("ts_context_commentstring.internal").calculate_commentstring() or vim.bo.commentstring
 		end,
 	},
 }
