@@ -12,27 +12,19 @@ vim.opt.winblend = 0
 vim.opt.wildoptions = "pum"
 vim.opt.pumblend = 10
 vim.opt.pumheight = 10
-vim.opt.pumwidth = 10
 vim.opt.background = "dark"
 vim.opt.showcmd = true
+vim.opt.showmode = false
 vim.opt.cmdheight = 1
 vim.opt.laststatus = 2
 vim.opt.scrolloff = 10
 vim.opt.inccommand = "split"
-vim.opt.wrap = false -- No Wrap lines
+vim.opt.wrap = false
 vim.opt.backspace = { "start", "eol", "indent" }
 vim.opt.shortmess:append({ W = true, I = true, c = true, C = true })
 vim.opt.splitright = true
 vim.opt.splitbelow = true
-vim.opt.fillchars = {
-	foldopen = "",
-	foldclose = "",
-	-- fold = "⸱",
-	fold = " ",
-	foldsep = " ",
-	diff = "╱",
-	eob = " ",
-}
+
 -- Title
 vim.opt.title = true
 vim.opt.titlestring = "❐ %t"
@@ -62,13 +54,15 @@ vim.opt.writebackup = false
 vim.opt.undofile = true -- Save undo history
 vim.opt.confirm = true -- prompt to save before destructive actions
 
--- Add asterisks in block comments
-vim.opt.formatoptions:append({ "r" })
-
 -- Other
 vim.opt.shell = "fish"
 vim.opt.path:append({ "**" }) -- Finding files - Search down into subfolders
 vim.opt.wildignore:append({ "*/node_modules/*" })
+-- go to previous/next line with h,l,left arrow and right arrow
+-- when cursor reaches end/beginning of line
+vim.opt.whichwrap:append("<>hl")
+-- add asterisks in block comments
+vim.opt.formatoptions:append({ "r" })
 
 -- Clipboard
 vim.opt.clipboard:append({ "unnamedplus" })
