@@ -1,9 +1,17 @@
+local icons = require("util.icons").ui
+
 return {
   {
     "folke/noice.nvim",
     event = "VeryLazy",
     opts = {
       -- add any options here
+      cmdline = {
+        format = {
+          search_down = { kind = "search", pattern = "^/", icon = icons.FindDown, lang = "regex" },
+          search_up = { kind = "search", pattern = "^%?", icon = icons.FindUp, lang = "regex" }
+        }
+      },
       lsp = {
         -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
         override = {
@@ -59,5 +67,8 @@ return {
       -- 	end,
       -- },
     },
+    -- config = function(_, opts)
+    --   require("noice").setup(opts)
+    -- end
   },
 }
