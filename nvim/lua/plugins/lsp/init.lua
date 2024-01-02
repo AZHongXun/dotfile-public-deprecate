@@ -4,6 +4,7 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",
+      "williamboman/mason.nvim",
     },
     opts = {
       diagnostic = {
@@ -24,7 +25,6 @@ return {
       },
     },
     config = function(_, opts)
-      -- local lspconfig = require("lspconfig")
       -- Diagnostic symbols in the sign column (gutter)
       local diagnostic_signs = require("util.icons").diagnostic_signs
       for type, icon in pairs(diagnostic_signs) do
@@ -34,7 +34,7 @@ return {
       vim.diagnostic.config(opts.diagnostic)
 
       -- Set up completion using nvim_cmp with LSP source
-      local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+      local capabilities = require("util.lsp").capabilities()
       local on_attach = require("util.lsp").on_attach()
 
       local servers = require("plugins.lsp.servers.lang")
@@ -68,6 +68,5 @@ return {
         },
       })
     end,
-  }
-
+  },
 }
