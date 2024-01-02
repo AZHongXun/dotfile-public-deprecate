@@ -17,6 +17,7 @@ return {
   emmet_ls = {
     filetypes = { "html", "css", "less", "scss", "sass", "vue" },
   },
+  cssls = {},
   jsonls = {},
   lua_ls = {
     settings = {
