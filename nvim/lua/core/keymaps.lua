@@ -14,7 +14,7 @@ keymap("n", "x", '"_x')
 keymap("t", "<C-[>", "<C-\\><C-n>")
 
 -- Toggle relative number
-keymap("n", "<leader>rn", "<cmd>set rnu!<cr>", { desc = "Toggle relative number" }, opts)
+keymap("n", "<leader>rn", "<cmd>set rnu!<cr>", opts)
 
 -- Increment/decrement
 keymap("n", "+", "<C-a>")
@@ -30,22 +30,22 @@ keymap("n", "<C-a>", "gg<S-v>G")
 --vim.api.nvim_create_user_command("W", "w !sudo tee > /dev/null %", {})
 
 -- New tab
-keymap("n", "te", "<cmd>tabedit<cr>")
+keymap("n", "<leader>te", "<cmd>tabedit<cr>")
 
 -- Split window
-keymap("n", "ss", "<cmd>split<Return><C-w>w")
-keymap("n", "sv", "<cmd>vsplit<Return><C-w>w")
+keymap("n", "<leader>ss", "<cmd>split<Return><C-w>w")
+keymap("n", "<leader>sv", "<cmd>vsplit<Return><C-w>w")
 -- Move window
 keymap("n", "<Space>", "<C-w>w")
-keymap("n", "sh", "<C-w>h")
-keymap("n", "sk", "<C-w>k")
-keymap("n", "sj", "<C-w>j")
-keymap("n", "sl", "<C-w>l")
+keymap("n", "<C-h>", "<C-w>h")
+keymap("n", "<C-j>", "<C-w>j")
+keymap("n", "<C-k>", "<C-w>k")
+keymap("n", "<C-l>", "<C-w>l")
 -- Resize window
-keymap("n", "<C-w><left>", "<C-w><")
-keymap("n", "<C-w><right>", "<C-w>>")
-keymap("n", "<C-w><up>", "<C-w>+")
-keymap("n", "<C-w><down>", "<C-w>-")
+keymap("n", "<C-left>", "<C-w><")
+keymap("n", "<C-right>", "<C-w>>")
+keymap("n", "<C-up>", "<C-w>+")
+keymap("n", "<C-down>", "<C-w>-")
 
 -- quit hl search
 keymap("n", "<ESC>", "<cmd>nohlsearch<cr>", opts)
